@@ -1,0 +1,32 @@
+package com.mmishra.retreive;
+
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class GetEmailFromHtml {
+	public static void main(String[] args) {
+		String content = null;
+		URLConnection connection = null;
+		try {
+			connection = new URL(
+					"http://www.aiechamber.org/Pages/MEMBERSHIPLIST.aspx")
+					.openConnection();
+			Scanner scanner = new Scanner(connection.getInputStream());
+			scanner.useDelimiter("\\Z");
+			content = scanner.next();
+			Matcher m = Pattern.compile(
+					"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(
+							content.toString());
+			while (m.find()) {
+				System.out.println(m.group());
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		//System.out.println(content);
+	}
+
+}
