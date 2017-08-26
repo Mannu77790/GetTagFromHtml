@@ -12,7 +12,7 @@ public class GetEmailFromHtml {
 		URLConnection connection = null;
 		try {
 			connection = new URL(
-					"http://www.aiechamber.org/Pages/MEMBERSHIPLIST.aspx")
+					"http://www.google.com")
 					.openConnection();
 			Scanner scanner = new Scanner(connection.getInputStream());
 			scanner.useDelimiter("\\Z");
